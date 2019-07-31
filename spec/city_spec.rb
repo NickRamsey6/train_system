@@ -34,7 +34,7 @@ describe '#City' do
       city.save()
       city2 = City.new({:name => "Nashville", :train_id => @train.id, :id => nil})
       city2.save()
-      city.clear()
+      City.clear()
       expect(City.all).to(eq([]))
     end
   end
@@ -86,7 +86,7 @@ describe '#City' do
       city.save()
       city2 = City.new({:name => "California", :train_id => train2.id , :id => nil})
       city2.save()
-      expect(City.find_by_city(train2.id)).to(eq([city2]))
+      expect(City.find_by_train(train2.id)).to(eq([city2]))
     end
   end
 

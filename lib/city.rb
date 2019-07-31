@@ -1,3 +1,5 @@
+require('pry')
+
 class City
   attr_reader :id
   attr_accessor :name, :train_id
@@ -34,12 +36,16 @@ end
   end
 
   def self.find(id)
-    city = DB.exec("SELECT * FROM songs WHERE id = #{id};").first
+    city = DB.exec("SELECT * FROM cities WHERE id = #{id};").first
+    if city
     name = city.fetch("name")
     train_id = city.fetch("train_id" ).to_i
     id = city.fetch("id").to_i
     City.new({:name => name, :train_id => train_id, :id => id})
+  else
+    nil
   end
+end
 
   def update(name, train_id)
     @name = name
@@ -48,7 +54,7 @@ end
   end
 
   def delete
-    DB.exec("DELETE FROM songs WHERE id = #{@id};")
+    DB.exec("DELETE FROM cities WHERE id = #{@id};")
   end
 
   def self.clear
@@ -57,7 +63,7 @@ end
 
   def self.find_by_train(trn_id)
     cities = []
-    returned_cities = DB.exec("SELECT * FROM songs WHERE train_id = #{trn_id};")
+    returned_cities = DB.exec("SELECT * FROM cities WHERE train_id = #{trn_id};")
     returned_cities.each() do |city|
       name = city.fetch("name")
       id = city.fetch("id").to_i

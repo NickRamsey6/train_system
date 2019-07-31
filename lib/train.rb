@@ -44,5 +44,10 @@ class Train
 
   def delete
     DB.exec("DELETE FROM trains WHERE id = #{@id};")
+    DB.exec("DELETE FROM cities WHERE train_id = #{@id};")
+  end
+
+  def cities
+    City.find_by_train(self.id)
   end
 end
