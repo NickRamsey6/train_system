@@ -36,4 +36,13 @@ class Train
     id = train.fetch("id").to_i
     Train.new({:name => name, :id => id})
   end
+
+  def update(name)
+    @name = name
+    DB.exec ("UPDATE trains SET name = '#{@name}' WHERE id = #{@id};")
+  end
+
+  def delete
+    DB.exec("DELETE FROM trains WHERE id = #{@id};")
+  end
 end
