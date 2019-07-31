@@ -1,4 +1,4 @@
-class Ticket
+class City
   attr_reader
 
   def intialize(attr)
