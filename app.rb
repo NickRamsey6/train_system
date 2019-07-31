@@ -6,41 +6,53 @@ require('pry')
 also_reload('lib/**/*.rb')
 require("pg")
 
-DB = PG.connect({dbname => "train_route"})
+DB = PG.connect({:dbname => "train_route"})
 
 get('/') do
-  # redirect to ('/trains')
-  "This will be our homepage"
+  redirect to ('/trains')
 end
 
 get('/trains') do
-  # @trains = Train.all
-  # erb(:trains)
-  "This route will show a list of trains"
+  @trains = Train.all
+  erb(:trains)
 end
 
 get('/trains/new') do
-  "This will take us to a page with a form for adding trains"
+  erb(:new_train)
+end
+
+post ('/trains') do
+  name = params[:train_name]
+  train = Train.new({:name => name, :id => nil})
+  train.save()
+  redirect to('/trains')
 end
 
 get('/trains/:id') do
-  "This route will show a specific train based on its ID. The value of ID here is #{params[:id]}."
+  @train = Train.find(params[:id].to_i())
+  erb(:train)
 end
 
-post('/trains') do
-  "This route will add a train to our list of trains."
-end
+# post('/trains/:id/cities') do
+#   @train = Train.find(params[:id].to_i())
+#   city = City.new({:name => params[:city_name], :train_id => @train.id, :id => nil})
+#   city.save()
+#   erb(:train)
+# end
 
 get('/trains/:id/edit') do
-  "This will take us to a page with a form for updating a train with an ID of #{params[:id]}."
-  # @train = Train.find(params[:id].to_i())
-  # erb(:edit_train)
+  @train = Train.find(params[:id].to_i())
+  erb(:edit_train)
 end
 
 patch('/trains/:id') do
-  "This route will update a train."
+  @train = Train.find(params[:id].to_i())
+  @train.update(params[:name])
+  redirect to('/trains')
 end
 
 delete('/trains/:id') do
-  "This route will delete a train."
+  @train = Train.find(params[:id].to_i())
+  @train.delete()
+  redirect to('/trains')
 end

@@ -2,7 +2,8 @@ require('spec_helper')
 
 describe '#Train' do
   before(:each) do
-    Train.clear()
+    Train.clear
+    City.clear
   end
 
   describe('.all') do
@@ -50,5 +51,5 @@ describe '#Train' do
       expect(Train.all).to(eq([train2]))
     end
   end
-  
+
 end
