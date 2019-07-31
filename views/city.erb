@@ -1,7 +1,7 @@
-<h2>Cities: <%= @cities.name %></h2>
-<h3>Train: <%= @cities.train.name %></h3>
+<h2>Cities: <%= @city.name %></h2>
+<h3>Train: <%= @city.train.name %></h3>
 
-<form action="/trains/<%= @cities.train.id %>/citiess/<%= @cities.id %>" method="post">
+<form action="/trains/<%= @city.train.id %>/cities/<%= @city.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
 
   <label for="name">Rename city</label>
@@ -10,10 +10,10 @@
   <button type="submit">Update city</button>
 </form>
 
-<form action="/trains/<%= @cities.train.id %>/citiess/<%= @cities.id %>" method="post">
+<form action="/trains/<%= @city.train.id %>/cities/<%= @city.id %>" method="post">
   <input name="_method" type="hidden" value="delete">
 
   <button type="submit">Delete city</button>
 </form>
 
-<a href="/trains/<%= @cities.train.id %>">Back to <%= @cities.train.name %></a>
+<a href="/trains/<%= @city.train.id %>">Back to <%= @city.train.name %></a>

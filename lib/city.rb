@@ -5,6 +5,7 @@ class City
   attr_accessor :name, :train_id
 
   def initialize(attr)
+    binding.pry
     @name = attr.fetch(:name)
     @train_id = attr.fetch(:train_id)
     @id = attr.fetch(:id)
@@ -31,7 +32,8 @@ end
   end
 
   def save
-    result = DB.exec("INSERT INTO cities (name, train_id) VALUES ('#{@name}', #{@train_id}) RETURNING id;")
+    binding.pry
+    result = DB.exec("INSERT INTO cities (name, train_id) VALUES ('#{self.name}', #{self.train_id}) RETURNING id;")
     @id = result.first().fetch("id").to_i
   end
 
