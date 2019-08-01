@@ -1,15 +1,30 @@
+<div class="jumbotron">
 <h1>Grand Central Station</h1>
-
+</div>
+<div class="nav-bar">
+<nav class="main-nav">
+  <ul>
+    <li>
+      <a href="#gallery">SCHEDULE</a>
+    </li>
+    <li>
+      <a href="#about">TICKETS</a>
+    </li>
+    <li>
+      <a href="#investment">STOPS</a>
+    </li>
+    <li>
+      <a href="#blog">PLAN YOUR TRIP</a>
+    </li>
+  </ul>
+</nav>
+</nav>
+</div>
+<div class="header-2">
 <h3>Available Trains</h3>
+</div>
 
-<form action="/trains">
-  <div class="form-group">
-    <label for="search">Search</label>
-    <input id="search" name="search" class="form-control" type="text">
-  </div>
-  <button type="submit" class="btn">Search</button>
-</form>
-
+<div class="train-list">
 <% if @trains.any? %>
   <ul>
     <% @trains.each do |train| %>
@@ -19,5 +34,15 @@
 <% else %>
   <p>There are currently no trains to display.</p>
 <% end %>
+</div>
+<form action="/trains">
+  <div class="form-group">
+    <label for="search">Search</label>
+    <input id="search" name="search" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn-primary">Search</button>
+</form>
 
 <a href="/trains/new">Add a new train</a>
+
+<footer> &copy; Nick Ramsey and Jessica Doss</footer>
