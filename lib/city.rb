@@ -5,7 +5,6 @@ class City
   attr_accessor :name, :train_id
 
   def initialize(attr)
-    binding.pry
     @name = attr.fetch(:name)
     @train_id = attr.fetch(:train_id)
     @id = attr.fetch(:id)

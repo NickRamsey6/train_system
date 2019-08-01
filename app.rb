@@ -57,23 +57,21 @@ end
 
 post ('/trains/:id/cities') do
   @train = Train.find(params[:id].to_i())
-  binding.pry
   city = City.new({:name => params[:city_name], :train_id => @train.id, :id => nil})
-  binding.pry
   city.save()
   erb(:train)
 end
 
-# patch ('/trains/:id/cities/:cities_id') do
-#   @train = Train.find(params[:id].to_i())
-#   city = City.find(params[:id].to_i())
-#   city.update(params[:name], @train_id)
-#   erb(:train)
-# end
-#
-# delete ('/trains/:id/cities/:cities_id') do
-#   city = City.find(params[:id].to_i())
-#   city.delete
-#   @train = Train.find(params[:id].to_i())
-#   erb(:train)
-# end
+patch ('/trains/:id/cities/:cities_id') do
+  @train = Train.find(params[:id].to_i())
+  city = City.find(params[:id].to_i())
+  city.update(params[:name], @train.id)
+  erb(:train)
+end
+
+delete ('/trains/:id/cities/:cities_id') do
+  city = City.find(params[:id].to_i())
+  city.delete
+  @train = Train.find(params[:id].to_i())
+  erb(:train)
+end
