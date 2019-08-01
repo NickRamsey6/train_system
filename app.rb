@@ -64,13 +64,13 @@ end
 
 patch ('/trains/:id/cities/:cities_id') do
   @train = Train.find(params[:id].to_i())
-  city = City.find(params[:id].to_i())
+  city = City.find(params[:cities_id].to_i())
   city.update(params[:name], @train.id)
   erb(:train)
 end
 
 delete ('/trains/:id/cities/:cities_id') do
-  city = City.find(params[:id].to_i())
+  city = City.find(params[:cities_id].to_i())
   city.delete
   @train = Train.find(params[:id].to_i())
   erb(:train)

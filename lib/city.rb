@@ -31,7 +31,6 @@ end
   end
 
   def save
-    binding.pry
     result = DB.exec("INSERT INTO cities (name, train_id) VALUES ('#{self.name}', #{self.train_id}) RETURNING id;")
     @id = result.first().fetch("id").to_i
   end
